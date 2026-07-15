@@ -11,7 +11,7 @@ function App() {
   const [formSent, setFormSent] = useState(false);
   const [darkMode, setDarkMode] = useState(true);
 
-  const typingWords = ['Full Stack Developer', 'React.js Expert', 'WordPress Developer', 'UI/UX Designer', 'Problem Solver'];
+  const typingWords = ['Full Stack Developer', 'React.js Expert', 'WordPress Developer', 'Problem Solver'];
   let wordIndex = 0;
   let charIndex = 0;
   let isDeleting = false;
@@ -82,9 +82,8 @@ function App() {
     { id: 'react', icon: 'fa-brands fa-react', title: 'React.js', short: 'Modern web applications.', level: 90, details: 'I build interactive and dynamic single-page applications using React.js. I am proficient in hooks, state management, and modern component-driven architecture to create fast and scalable user interfaces.' },
     { id: 'wordpress', icon: 'fa-brands fa-wordpress', title: 'WordPress', short: 'Custom CMS solutions.', level: 85, details: 'I create fully custom WordPress themes and plugins. I can build scalable, easy-to-manage content management systems tailored to your business needs, ensuring high performance and SEO readiness.' },
     { id: 'webdev', icon: 'fa-solid fa-code', title: 'Web Development', short: 'Building responsive websites.', level: 92, details: 'I build modern, responsive, and high-performance websites using HTML5, CSS3, and JavaScript. I focus on creating seamless user experiences that work beautifully across all devices.' },
-    { id: 'design', icon: 'fa-solid fa-pen-nib', title: 'UI/UX Design', short: 'Beautiful user interfaces.', level: 80, details: 'I design intuitive and visually stunning interfaces. My approach combines aesthetic appeal with functional design, utilizing glassmorphism, modern typography, and vibrant color palettes.' },
     { id: 'problem', icon: 'fa-solid fa-lightbulb', title: 'Problem Solving', short: 'Efficient solutions.', level: 88, details: 'I excel at breaking down complex problems into manageable tasks. Whether it is debugging tricky code or optimizing algorithms, I find creative and efficient solutions.' },
-    { id: 'seo', icon: 'fa-solid fa-magnifying-glass-chart', title: 'SEO Optimization', short: 'Rank higher on Google.', level: 78, details: 'I implement advanced SEO strategies to ensure websites rank highly on search engines. This includes meta optimization, semantic HTML, Core Web Vitals, and performance tuning for maximum visibility.' }
+    { id: 'backend', icon: 'fa-solid fa-server', title: 'Backend Dev', short: 'Node.js & Databases.', level: 75, details: 'I build robust and secure server-side applications using Node.js and Express. I design efficient databases, write RESTful APIs, and ensure seamless communication between the frontend and backend.' }
   ];
 
   const blogData = [
@@ -93,11 +92,28 @@ function App() {
     { id: 3, image: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80', date: 'June 5, 2026', title: 'WordPress vs React: Which to Choose?', shortDesc: 'A comprehensive guide to choosing the right technology for your next project...', fullArticle: 'When starting a new web project, one of the most critical decisions is choosing the right technology. WordPress remains the king of content management, powering over 43% of all websites. However, React offers unparalleled flexibility and performance for complex, interactive applications. In this article, we break down the pros and cons of each approach to help you make the right decision for your specific use case and business goals.' }
   ];
 
-  const handleContactSubmit = (e) => {
+  const handleContactSubmit = async (e) => {
     e.preventDefault();
-    setFormSent(true);
-    setTimeout(() => setFormSent(false), 4000);
-    e.target.reset();
+    const formData = new FormData(e.target);
+    
+    try {
+      const response = await fetch("https://formsubmit.co/ajax/mharchand22@gmail.com", {
+        method: "POST",
+        body: formData,
+        headers: {
+            'Accept': 'application/json'
+        }
+      });
+      if (response.ok) {
+        setFormSent(true);
+        setTimeout(() => setFormSent(false), 4000);
+        e.target.reset();
+      } else {
+        alert("Server error. Pehli dafa activation ke liye apna Gmail check karein.");
+      }
+    } catch(err) {
+      alert("Network error! Please try again.");
+    }
   };
 
   return (
@@ -148,7 +164,6 @@ function App() {
         {/* HERO */}
         <section id="home" className="hero reveal active">
           <div className="hero-content">
-            <p className="greeting"><i className="fa-solid fa-hand-wave"></i> Welcome to my world</p>
             <h1>Hi, I'm <span className="highlight">Mahar Chand</span></h1>
             <p className="tagline">
               I'm a <span className="typed-text">{typedText}</span><span className="cursor">|</span>
@@ -178,7 +193,7 @@ function App() {
           <div className="about-container">
             <div className="about-text">
               <h3>Passionate Innovator & Creator</h3>
-              <p>Welcome to my portfolio! I am a passionate professional dedicated to creating amazing digital experiences. I turn complex ideas into elegant, user-friendly realities.</p>
+              <p>I am a passionate professional dedicated to creating amazing digital experiences. I turn complex ideas into elegant, user-friendly realities.</p>
               <p>With a strong foundation in modern web technologies like React.js and WordPress, I build applications that are not only visually spectacular but also highly performant and scalable.</p>
               <div className="about-tags">
                 <span className="tag"><i className="fa-brands fa-react"></i> React.js</span>
@@ -217,27 +232,36 @@ function App() {
               <div className="timeline-dot"></div>
               <div className="timeline-content">
                 <span className="timeline-badge">🎓 Education</span>
-                <h3>BS Computer Science</h3>
-                <h4>University Name • 2020 - 2024</h4>
-                <p>Graduated with honors, focusing on Software Engineering, Data Structures, and Web Technologies.</p>
+                <h3>Intermediate (ICS)</h3>
+                <h4>Self-taught Frontend Web Developer</h4>
+                <p>I have completed Intermediate (ICS) and am a self-taught Frontend Web Developer.</p>
               </div>
             </div>
             <div className="timeline-item">
               <div className="timeline-dot"></div>
               <div className="timeline-content">
-                <span className="timeline-badge">📜 Certification</span>
-                <h3>Advanced Web Development</h3>
-                <h4>Tech Institute • 2023</h4>
-                <p>Mastered modern frameworks including React, Node.js, and advanced UI/UX principles.</p>
+                <span className="timeline-badge">💻 Technical Skills</span>
+                <h3>Web Technologies</h3>
+                <h4>Frontend & CMS</h4>
+                <p>HTML5, CSS3, JavaScript (ES6+), React.js, Redux Toolkit, Tailwind CSS, Git & GitHub, REST API Integration, and WordPress.</p>
               </div>
             </div>
             <div className="timeline-item">
               <div className="timeline-dot"></div>
               <div className="timeline-content">
-                <span className="timeline-badge">💼 Experience</span>
-                <h3>Freelance Full Stack Developer</h3>
-                <h4>Self-Employed • 2022 - Present</h4>
-                <p>Delivering high-quality web solutions to 20+ clients worldwide using React.js and WordPress.</p>
+                <span className="timeline-badge">🌐 Professional Platforms</span>
+                <h3>Freelance Profiles</h3>
+                <h4>Active & Growing</h4>
+                <p>Fiverr, Upwork, LinkedIn, and GitHub.</p>
+              </div>
+            </div>
+            <div className="timeline-item">
+              <div className="timeline-dot"></div>
+              <div className="timeline-content">
+                <span className="timeline-badge">💼 Professional Summary</span>
+                <h3>Career Overview</h3>
+                <h4>Showcase & Connect</h4>
+                <p>I actively maintain professional profiles on Fiverr, Upwork, LinkedIn, and GitHub to showcase my work, connect with clients, and continue growing my career.</p>
               </div>
             </div>
           </div>
@@ -294,7 +318,7 @@ function App() {
             <a href="https://www.instagram.com/alone881m/?hl=en" target="_blank" rel="noreferrer" className="social-icon instagram"><i className="fa-brands fa-instagram"></i></a>
             <a href="https://www.linkedin.com/in/mhar-chand-ab087b2bb/" target="_blank" rel="noreferrer" className="social-icon linkedin"><i className="fa-brands fa-linkedin-in"></i></a>
             <a href="https://github.com/mharchand1-ship-it/localrepo" target="_blank" rel="noreferrer" className="social-icon github"><i className="fa-brands fa-github"></i></a>
-            <a href="#" target="_blank" rel="noreferrer" className="social-icon twitter"><i className="fa-brands fa-x-twitter"></i></a>
+            <a href="https://wa.me/923312398310" target="_blank" rel="noreferrer" className="social-icon whatsapp"><i className="fa-brands fa-whatsapp"></i></a>
           </div>
 
           <div className="contact-grid">
@@ -322,7 +346,8 @@ function App() {
               </div>
             </div>
 
-            <form className="contact-form" action="https://formsubmit.co/mharchand22@gmail.com" method="POST">
+            <form className="contact-form" onSubmit={handleContactSubmit}>
+              {formSent && <div className="form-success" style={{ color: 'green', marginBottom: '1rem', fontWeight: 'bold' }}><i className="fa-solid fa-circle-check"></i> Message sent successfully!</div>}
               <input type="hidden" name="_captcha" value="false" />
               <input type="hidden" name="_template" value="table" />
               <div className="form-row">
@@ -363,8 +388,9 @@ function App() {
             <a href="https://www.instagram.com/alone881m/?hl=en" target="_blank" rel="noreferrer"><i className="fa-brands fa-instagram"></i></a>
             <a href="https://www.linkedin.com/in/mhar-chand-ab087b2bb/" target="_blank" rel="noreferrer"><i className="fa-brands fa-linkedin-in"></i></a>
             <a href="https://github.com/mharchand1-ship-it/localrepo" target="_blank" rel="noreferrer"><i className="fa-brands fa-github"></i></a>
+            <a href="https://wa.me/923312398310" target="_blank" rel="noreferrer"><i className="fa-brands fa-whatsapp"></i></a>
           </div>
-          <p className="footer-copy">&copy; 2026 Mahar Chand. All rights reserved. Built with ❤️ using React.js</p>
+          <p className="footer-copy">&copy; 2026 Mahar Chand. All rights reserved. Built using React.js</p>
         </div>
       </footer>
 
