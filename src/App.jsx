@@ -310,7 +310,7 @@ function App() {
                 <i className="fa-solid fa-phone"></i>
                 <div>
                   <h4>Phone</h4>
-                  <a href="tel:03312398310">03312398310</a>
+                  <a href="tel:+923312398310">+923312398310</a>
                 </div>
               </div>
               <div className="contact-item">
@@ -322,25 +322,26 @@ function App() {
               </div>
             </div>
 
-            <form className="contact-form" onSubmit={handleContactSubmit}>
-              {formSent && <div className="form-success"><i className="fa-solid fa-circle-check"></i> Message sent successfully! I'll get back to you soon.</div>}
+            <form className="contact-form" action="https://formsubmit.co/mharchand22@gmail.com" method="POST">
+              <input type="hidden" name="_captcha" value="false" />
+              <input type="hidden" name="_template" value="table" />
               <div className="form-row">
                 <div className="form-group">
                   <label>Your Name</label>
-                  <input type="text" placeholder="John Doe" required />
+                  <input type="text" name="name" placeholder="John Doe" required />
                 </div>
                 <div className="form-group">
                   <label>Your Email</label>
-                  <input type="email" placeholder="john@example.com" required />
+                  <input type="email" name="email" placeholder="john@example.com" required />
                 </div>
               </div>
               <div className="form-group">
                 <label>Subject</label>
-                <input type="text" placeholder="Project Inquiry..." required />
+                <input type="text" name="_subject" placeholder="Project Inquiry..." required />
               </div>
               <div className="form-group">
                 <label>Message</label>
-                <textarea rows="5" placeholder="Tell me about your project..." required></textarea>
+                <textarea name="message" rows="5" placeholder="Tell me about your project..." required></textarea>
               </div>
               <button type="submit" className="btn primary" style={{ width: '100%', justifyContent: 'center' }}>
                 Send Message <i className="fa-solid fa-paper-plane"></i>
