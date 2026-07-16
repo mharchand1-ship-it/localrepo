@@ -95,24 +95,32 @@ function App() {
   const handleContactSubmit = async (e) => {
     e.preventDefault();
     const formData = new FormData(e.target);
+    const data = Object.fromEntries(formData.entries());
     
     try {
-      const response = await fetch("https://formsubmit.co/ajax/mharchand22@gmail.com", {
+      const apiUrl = import.meta.env.VITE_API_URL || "http://localhost:5000/api/contact";
+      const response = await fetch(apiUrl, {
         method: "POST",
-        body: formData,
         headers: {
+            'Content-Type': 'application/json',
             'Accept': 'application/json'
-        }
+        },
+        body: JSON.stringify({
+          name: data.name,
+          email: data.email,
+          subject: data._subject,
+          message: data.message
+        })
       });
       if (response.ok) {
         setFormSent(true);
         setTimeout(() => setFormSent(false), 4000);
         e.target.reset();
       } else {
-        alert("Server error. Pehli dafa activation ke liye apna Gmail check karein.");
+        alert("Error saving message to database. Please check your inputs.");
       }
     } catch(err) {
-      alert("Network error! Please try again.");
+      alert("Network error! Is the backend server running?");
     }
   };
 
