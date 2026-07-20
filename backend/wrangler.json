@@ -1,0 +1,15 @@
+{
+  "name": "backend-portfolio",
+  "main": "src/index.js",
+  "compatibility_date": "2024-04-03",
+  "d1_databases": [
+    {
+      "binding": "DB",
+      "database_name": "portfolio-db",
+      "database_id": "ca0ce88c-0643-4af2-a17d-5ee5e85a2c63"
+    }
+  ],
+  "dev": {
+    "port": 5000
+  }
+}
