@@ -4,9 +4,9 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "dev": "wrangler dev",
+    "dev": "wrangler dev --remote",
     "deploy": "wrangler deploy",
-    "start": "wrangler dev",
+    "start": "wrangler dev --remote",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
