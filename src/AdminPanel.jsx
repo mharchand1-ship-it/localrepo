@@ -14,7 +14,7 @@ function AdminPanel() {
   const fetchMessages = async () => {
     setLoading(true);
     try {
-      const apiUrl = import.meta.env.VITE_API_URL || 'http://localhost:5000/api/contact';
+      const apiUrl = import.meta.env.VITE_API_URL || 'https://backend-portfolio.mharchand1.workers.dev/api/contact';
       const res = await fetch(apiUrl);
       const data = await res.json();
       if (data.success) {
