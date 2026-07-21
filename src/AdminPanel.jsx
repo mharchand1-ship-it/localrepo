@@ -87,7 +87,7 @@ function AdminPanel() {
           <i className="fa-brands fa-connectdevelop admin-logo-icon"></i>
           <span className="admin-logo-text">MC. Admin</span>
         </div>
-        <nav className="admin-nav">
+        <div className="admin-nav">
           <a href="#" className="admin-nav-item active">
             <i className="fa-solid fa-inbox"></i> Contact Messages
           </a>
@@ -98,7 +98,7 @@ function AdminPanel() {
           <a href="/" className="admin-nav-item">
             <i className="fa-solid fa-globe"></i> View Website
           </a>
-        </nav>
+        </div>
         <div className="admin-sidebar-footer">
           <button onClick={() => { setIsAuthenticated(false); setPassword(''); }} className="admin-logout-btn">
             <i className="fa-solid fa-right-from-bracket"></i> Logout
@@ -108,12 +108,12 @@ function AdminPanel() {
 
       {/* Main Content */}
       <main className="admin-main">
-        <header className="admin-header">
+        <div className="admin-header">
           <h1><i className="fa-solid fa-inbox"></i> Contact Messages</h1>
           <button onClick={fetchMessages} className="admin-refresh-btn">
             <i className="fa-solid fa-rotate"></i> Refresh
           </button>
-        </header>
+        </div>
 
         {loading && (
           <div className="admin-loading">
