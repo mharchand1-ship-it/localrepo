@@ -6,20 +6,10 @@ function AdminPanel() {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const [selectedMsg, setSelectedMsg] = useState(null);
-  const [password, setPassword] = useState('');
-  const [isAuthenticated, setIsAuthenticated] = useState(false);
+  useEffect(() => {
+    fetchMessages();
+  }, []);
 
-  const ADMIN_PASSWORD = 'mahar2026';
-
-  const handleLogin = (e) => {
-    e.preventDefault();
-    if (password === ADMIN_PASSWORD) {
-      setIsAuthenticated(true);
-      fetchMessages();
-    } else {
-      alert('Wrong password!');
-    }
-  };
 
   const fetchMessages = async () => {
     setLoading(true);
@@ -47,37 +37,6 @@ function AdminPanel() {
     });
   };
 
-  if (!isAuthenticated) {
-    return (
-      <div className="admin-login-wrapper">
-        <div className="admin-login-card">
-          <div className="admin-login-icon">
-            <i className="fa-solid fa-shield-halved"></i>
-          </div>
-          <h2>Admin Panel</h2>
-          <p>Enter password to access messages</p>
-          <form onSubmit={handleLogin}>
-            <div className="admin-input-group">
-              <i className="fa-solid fa-lock"></i>
-              <input
-                type="password"
-                placeholder="Enter Password"
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
-                autoFocus
-              />
-            </div>
-            <button type="submit" className="admin-login-btn">
-              <i className="fa-solid fa-right-to-bracket"></i> Login
-            </button>
-          </form>
-          <a href="/" className="admin-back-link">
-            <i className="fa-solid fa-arrow-left"></i> Back to Website
-          </a>
-        </div>
-      </div>
-    );
-  }
 
   return (
     <div className="admin-wrapper">
@@ -99,11 +58,7 @@ function AdminPanel() {
             <i className="fa-solid fa-globe"></i> View Website
           </a>
         </div>
-        <div className="admin-sidebar-footer">
-          <button onClick={() => { setIsAuthenticated(false); setPassword(''); }} className="admin-logout-btn">
-            <i className="fa-solid fa-right-from-bracket"></i> Logout
-          </button>
-        </div>
+
       </aside>
 
       {/* Main Content */}
