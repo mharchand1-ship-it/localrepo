@@ -148,6 +148,7 @@ function App() {
             <li><a href="#skills" onClick={(e) => { e.preventDefault(); scrollTo('#skills'); }}>Skills</a></li>
             <li><a href="#blog" onClick={(e) => { e.preventDefault(); scrollTo('#blog'); }}>Blog</a></li>
             <li><a href="#contact" onClick={(e) => { e.preventDefault(); scrollTo('#contact'); }}>Contact</a></li>
+            <li><a href="/admin" className="admin-nav-link"><i className="fa-solid fa-lock"></i> Admin</a></li>
             <li className="nav-auth">
               <button
                 className="theme-toggle"
