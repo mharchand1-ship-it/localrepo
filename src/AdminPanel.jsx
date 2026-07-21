@@ -89,6 +89,9 @@ function AdminPanel() {
         </div>
         <nav className="admin-nav">
           <a href="#" className="admin-nav-item active">
+            <i className="fa-solid fa-inbox"></i> Contact Messages
+          </a>
+          <a href="#" className="admin-nav-item">
             <i className="fa-solid fa-envelope"></i> Messages
             <span className="admin-badge">{messages.length}</span>
           </a>
