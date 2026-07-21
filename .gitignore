@@ -29,3 +29,7 @@ dist-ssr
 .wrangler/
 backend/.wrangler/
 server/d1-tutorial/
+
+.dev.vars*
+!.dev.vars.example
+!.env.example
